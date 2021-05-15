@@ -1,0 +1,22 @@
+node {    
+    def app     
+    stage('Clone repository') {               
+             
+        checkout scm    
+    }     
+    stage('Build image') {         
+       
+        app = docker.build("deno-cloudrun")    
+    }     
+    stage('Test image') {           
+        app.inside {            
+            sh 'echo "Tests passed"'        
+        }    
+    }     
+    stage('Push image') {
+        docker.withRegistry('https://us.gcr.io/testcloudrun-313619/', 'gcr') {            
+            app.push("${env.BUILD_NUMBER}")            
+            app.push("latest")        
+        }    
+    }
+}
