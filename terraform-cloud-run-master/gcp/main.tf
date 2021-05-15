@@ -44,7 +44,7 @@ resource "google_cloud_run_service" "default" {
   template {
     spec {
       containers {
-        image = format("eu.gcr.io/%s/deno-oak:%s", data.google_client_config.current.project, var.app_version)
+        image = format("us.gcr.io/%s/deno-oak:%s", data.google_client_config.current.project, var.app_version)
       }
     }
   }
