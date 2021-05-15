@@ -6,7 +6,7 @@ node {
     }     
     stage('Build image') {         
        
-        app = docker.build("testcloudrun-313619")    
+        app = docker.build("ekarniybabay/deno-cloudrun")    
     }     
     stage('Test image') {           
         app.inside {            
@@ -14,7 +14,7 @@ node {
         }    
     }     
     stage('Push image') {
-        docker.withRegistry('https://us.gcr.io/', 'gcr') {            
+        docker.withRegistry('https://registry.hub.docker.com', 'dochub') {            
             app.push("${env.BUILD_NUMBER}")            
             app.push("latest")        
         }    
