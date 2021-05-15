@@ -1,11 +1,11 @@
 FROM paco0512/deno as builder
 
-COPY application .
+#COPY application .
 
-RUN deno compile --unstable server.ts -o oakServer
+#RUN deno compile --unstable server.ts -o oakServer
 
 FROM ubuntu
 
-COPY --from=builder app/oakServer /bin/oakServer
+#COPY --from=builder app/oakServer /bin/oakServer
 
-ENTRYPOINT ["oakServer"]
+#ENTRYPOINT ["oakServer"]
