@@ -1,36 +1,36 @@
-terraform {
-  required_providers {
-    google = {
-      source = "hashicorp/google"
-    }
-    null = {
-      source = "hashicorp/null"
-    }
-  }
-  backend "remote" {
-    organization = "pascaleuhus"
+# terraform {
+#   required_providers {
+#     google = {
+#       source = "hashicorp/google"
+#     }
+#     null = {
+#       source = "hashicorp/null"
+#     }
+#   }
+#   backend "remote" {
+#     organization = "pascaleuhus"
 
-    workspaces {
-      name = "Demo"
-    }
-  }
-}
+#     workspaces {
+#       name = "Demo"
+#     }
+#   }
+# }
 
 locals {
   project = var.project_id
 }
 
-provider "google" {
-  project = local.project
-  region  = "europe-west3"
-  zone    = "europe-west3-a"
-}
+# provider "google" {
+#   project = local.project
+#   region  = "europe-west3"
+#   zone    = "europe-west3-a"
+# }
 
 data "google_client_config" "current" {}
 
 resource "google_container_registry" "registry" {
   project  = data.google_client_config.current.project
-  location = "EU"
+  location = "US"
 }
 
 /*

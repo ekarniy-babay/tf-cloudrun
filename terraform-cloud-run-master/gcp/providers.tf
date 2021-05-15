@@ -2,7 +2,7 @@
 data "terraform_remote_state" "backend_env" {
   backend = "gcs"
   config = {
-    bucket = "devops-lab-bucket"
+    bucket = "cloudrun-lab-bucket"
     prefix = "tfstate/${var.app_env}"
     credentials = file(var.gcp_auth_file)
   }
